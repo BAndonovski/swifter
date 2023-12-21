@@ -12,7 +12,7 @@ public protocol HttpServerIODelegate: AnyObject {
     func socketConnectionReceived(_ socket: Socket)
 }
 
-open class HttpServerIO {
+open class HttpServerIO: NSObject {
 
     public weak var delegate: HttpServerIODelegate?
 
@@ -26,7 +26,7 @@ open class HttpServerIO {
         case stopped
     }
 
-    private var stateValue: Int32 = HttpServerIOState.stopped.rawValue
+    @objc dynamic public var stateValue: Int32 = HttpServerIOState.stopped.rawValue
 
     public private(set) var state: HttpServerIOState {
         get {
